@@ -1,0 +1,146 @@
+// Rewrite the function nonMutatingSplice by using slice instead // of splice. It should limit the provided cities array to a 
+// length of 3, and return a new array with only the first three // items.
+// Do not mutate the original array provided to the function.
+function nonMutatingSplice(cities) {
+  // Only change code below this line
+  let cityList = [...cities];
+  return cityList.slice(0, 3);
+  // Only change code above this line
+}
+var inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+console.log(nonMutatingSplice(inputCities));
+
+
+// We have defined a function named squareList. You need to 
+// complete the code for the squareList function using any 
+// combination of map(), filter(), and reduce() so that it returns // a new array containing only the square of only the positive 
+// integers (decimal numbers are not integers) when an array of 
+// real numbers is passed to it. An example of an array containing // only real numbers is [-3, 4.8, 5, 3, -3.2].
+// Note: Your function should not use any kind of for or while 
+// loops or the forEach() function.
+const squareList = (arr) => {
+  // Only change code below this line
+  let posIntList = arr.filter(
+    num => (num >= 0) && (parseInt(num) === num)
+  ).map(
+    num => Math.pow(num, 2)
+  );
+  return posIntList;
+  // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+
+
+// Use the sort method in the alphabeticalOrder function to sort // the elements of arr in alphabetical order.
+function alphabeticalOrder(arr) {
+  // Only change code below this line
+  arr.sort(
+    (a, b) => (a === b) ? 0 : (a > b) ? 1 : -1
+  );
+  return arr;
+  // Only change code above this line
+}
+console.log(alphabeticalOrder(["a", "d", "c", "a", "z", "g"]));
+
+
+// Use the sort method in the nonMutatingSort function to sort the // elements of an array in ascending order. The function should 
+// return a new array, and not mutate the globalArray variable.
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  // Only change code below this line
+  let localArr = [...arr];
+  localArr.sort(
+    (a, b) => (a - b)
+  );
+  return localArr;
+  // Only change code above this line
+}
+console.log(nonMutatingSort(globalArray), globalArray);
+
+
+// Use the split method inside the splitify function to split str // into an array of words. The function should return the array. // Note that the words are not always separated by spaces, and the // array should not contain punctuation.
+function splitify(str) {
+  // Only change code below this line
+  let regex = /\s|\W|\d/;
+  let arr = str.split(regex);
+  return arr;
+  // Only change code above this line
+}
+console.log(splitify("Hello World,I-am code"));
+
+
+// Use the join method (among others) inside the sentensify 
+// function to make a sentence from the words in the string str. // The function should return a string. For example, "I-like-Star-
+// Wars" would be converted to "I like Star Wars". For this 
+// challenge, do not use the replace method.
+function sentensify(str) {
+  // Only change code below this line
+  let regex = /\s|\W/;
+  let arr = str.split(regex);
+  return arr.join(" ");
+  // Only change code above this line
+}
+console.log(sentensify("May-the-force-be-with-you"));
+
+
+// Fill in the urlSlug function so it converts a string title and // returns the hyphenated version for the URL. You can use any of // the methods covered in this section, and don't use replace. 
+// Here are the requirements:
+// The input is a string with spaces and title-cased words
+// The output is a string with the spaces between words replaced // by a hyphen (-)
+// The output should be all lower-cased letters
+// The output should not have any spaces
+// Only change code below this line
+function urlSlug(title) {
+  let regSplit = /\s/;
+  let arr = title.split(regSplit);
+  let lowercaseArr = [];
+  arr.forEach(word => (word === "") ? null : lowercaseArr.push(word.toLowerCase()))
+  let slug = lowercaseArr.join("-")
+  return slug;
+}
+// Only change code above this line
+
+console.log(urlSlug(" Winter Is  Coming"));
+
+
+// Use the every method inside the checkPositive function to check // if every element in arr is positive. The function should return // a Boolean value.
+function checkPositive(arr) {
+  // Only change code below this line
+  return arr.every(
+    num => num >= 0
+  );
+  // Only change code above this line
+}
+console.log(checkPositive([1, 2, 3, 4, 5]));
+
+
+// Use the some method inside the checkPositive function to check // if any element in arr is positive. The function should return a // Boolean value.
+function checkPositive(arr) {
+  // Only change code below this line
+  return arr.some(
+    num => num >= 0
+  );
+  // Only change code above this line
+}
+console.log(checkPositive([1, 2, 3, -4, 5]));
+
+
+// Fill in the body of the add function so it uses currying to add // parameters x, y, and z.
+function add(x) {
+  // Only change code below this line
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    }
+  }
+  // Only change code above this line
+}
+console.log(add(10)(20)(30));
+//Impartial function
+function impartial(x, y, z) {
+  return x + y + z;
+}
+var partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // Returns 13

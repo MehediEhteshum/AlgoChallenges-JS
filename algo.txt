@@ -1,0 +1,206 @@
+// Reverse the provided string.
+function reverseString(str) {
+  let newStr = "";
+  let i = str.length-1;
+  while(i>=0){
+    newStr += str[i];
+    i--;
+  }
+  return newStr;
+}
+
+console.log(reverseString("hello"));
+// second solution using recursive function.
+function revStr(str) {
+  if(str === ""){
+    return "";
+  }
+  else{
+    return str[str.length-1]+revStr(str.slice(0, -1));
+  }
+}
+
+console.log(revStr("hello"));
+
+
+// Tower of hanoi.
+function toH(rNum){
+    if(rNum === 0){
+        return 0;
+    }
+    else{
+        return Math.pow(2, rNum-1)+toH(rNum-1);
+    }
+}
+
+console.log(toH(6));
+
+
+// Return the length of the longest word in the provided sentence. // Your response should be a number.
+
+function findLongestWordLength(str) {
+  let regNoSp = /[a-z0-9]+/ig;
+  let wordList = str.match(regNoSp);
+  let maxLenW = 0;
+  let i = 0;
+  while(i<wordList.length){
+    // console.log(wordList[i].length);
+    maxLenW = (wordList[i].length>maxLenW)? wordList[i].length:maxLenW;
+    i++;
+  }
+  return maxLenW;
+}
+
+console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"));
+
+
+// Check if a string (first argument, str) ends with the given 
+// target string (second argument, target).
+function confirmEnding(str, target) {
+  let strReg = `${target}$`;
+  let regEnd = new RegExp(strReg);
+  return regEnd.test(str);
+}
+
+console.log(confirmEnding("Bastian", "n"));
+
+
+// Repeat a given string str (first argument) for num times
+// (second argument). Return an empty string if num is not a 
+// positive number. For the purpose of this challenge, do not use // the built-in .repeat() method.
+function repeatStringNumTimes(str, num) {
+  let newStr = "";
+  if(num<=0){
+    return newStr;
+  }
+  else{
+    while(num>0){
+      newStr += str;
+      num--;
+    }
+    return newStr;
+  }
+}
+
+console.log(repeatStringNumTimes("abc", 3));
+
+
+// Truncate a string (first argument) if it is longer than the 
+// given maximum string length (second argument). Return the 
+// truncated string with a ... ending.
+function truncateString(str, num) {
+  let retStr = (0<=num && num<str.length)? str.slice(0, num)+"...":str;
+  return retStr;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", -9));
+
+
+// Create a function that looks through an array arr and returns // the first element in it that passes a 'truth test'. This means // that given an element x, the 'truth test' is passed if func(x) // is true. If no element passes the test, return undefined.
+function findElement(arr, func) {
+  let result;
+  let i = 0;
+  while(i<arr.length){
+    result = func(arr[i]);
+    console.log(result, arr[i]);
+    if(result===true){
+      return arr[i];
+    }
+    i++;
+  }
+}
+
+console.log(findElement([1, 3, 5], num => num % 2 === 0));
+
+
+// You are given two arrays and an index.
+// Copy each element of the first array into the second array, in // order.
+// Begin inserting elements at index n of the second array.
+// Return the resulting array. The input arrays should remain the // same after the function runs.
+function frankenSplice(arr1, arr2, n) {
+  let retArr = [...arr2];
+  retArr.splice(n, 0, ...arr1);
+  return retArr;
+}
+
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+
+// Remove all falsy values from an array.
+// Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+function bouncer(arr) {
+  let falseVals = [false, null, 0, "", undefined, NaN];
+  let retArr = [];
+  let i = 0;
+  while(i<arr.length){
+    if(falseVals.includes(arr[i])){      
+    }
+    else{
+      retArr.push(arr[i]);
+    }
+    i++;
+  }
+  return retArr;
+}
+
+console.log(bouncer([7, "ate", "", false, 9]));
+
+
+// Return the lowest index at which a value (second argument) 
+// should be inserted into an array (first argument) once it has // been sorted. The returned value should be a number.
+function getIndexToIns(arr, num) {
+  arr.sort((a, b) => (a-b));
+  let index = 0;
+  for(let i=0; i<arr.length; i++){
+    index = (arr[i]===num)? i:(arr[i]<num)? (i+1):index;
+  }
+  return index;
+}
+
+console.log(getIndexToIns([3, 10, 5], 3));
+
+
+// Return true if the string in the first element of the array 
+// contains all of the letters of the string in the second element // of the array.
+// For example, ["hello", "Hello"], should return true because all // of the letters in the second string are present in the first, // ignoring case.
+// The arguments ["hello", "hey"] should return false because the // string "hello" does not contain a "y".
+// Lastly, ["Alien", "line"], should return true because all of 
+// the letters in "line" are present in "Alien".
+function mutation(arr) {
+  let arr1 = arr[0].toUpperCase();
+  let arr2 = arr[1].toUpperCase();
+  for(let i=0; i<arr2.length; i++){
+    if(arr1.includes(arr2[i])){
+      }
+    else{
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(mutation(["hello", "He"]));
+
+
+// Write a function that splits an array (first argument) into 
+// groups the length of size (second argument) and returns them as // a two-dimensional array.
+function chunkArrayInGroups(arr, size) {
+  let retArr = [];
+  let subArr = [];
+  let i = 0;
+  while(i<arr.length){
+    subArr.push(arr[i]);
+    if((i+1)%size===0){
+      retArr.push(subArr);
+      subArr = [];
+    }
+    else if(i===(arr.length-1)){
+      retArr.push(subArr);
+    }
+    i++;
+  }
+  
+  return retArr;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2));

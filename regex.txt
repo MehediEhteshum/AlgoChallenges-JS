@@ -1,0 +1,52 @@
+// Regular Expressions: Positive and Negative Lookahead
+// Ques: Use lookaheads in the pwRegex to match passwords that are // greater than 5 characters long, do not begin with numbers, and // have two consecutive digits.
+let sampleWord = "a12bc";
+let pwRegex = /(?=^\D\w*\d\d\w*)(?=\D\w{5,})/; // Change this line
+let result = pwRegex.test(sampleWord);
+console.log(result);
+
+// Regular Expressions: Check For Mixed Grouping of Characters
+// Ques: Fix the regex so that it checks for the names of Franklin // Roosevelt or Eleanor Roosevelt in a case sensitive manner and // it should make concessions for middle names.
+// Then fix the code so that the regex that you have created is 
+// checked against myString and either true or false is returned // depending on whether the regex matches.
+let myString = "Franklin D. Roosevelt";
+let myRegex = /^(Eleanor|Franklin\s\w*\W*)\sRoosevelt/; // Change this line
+let result = myRegex.test(myString); // Change this line
+// After passing the challenge experiment with myString and see 
+// how the grouping works
+let retString = myString.match(myRegex);
+console.log(retString);
+
+// Regular Expressions: Reuse Patterns Using Capture Groups
+// Use capture groups in reRegex to match numbers that are 
+// repeated only three times in a string, each separated by a 
+// space.
+let repeatNum = "42 42 42 42";
+let reRegex = /^(\d+)\s\1\s\1$/; // Change this line
+let result = reRegex.test(repeatNum);
+let retStr = repeatNum.match(reRegex);
+console.log(retStr);
+
+//Regular Expressions: Use Capture Groups to Search and Replace
+// Write a regex fixRegex using three capture groups that will 
+// search for each word in the string "one two three". Then update // the replaceText variable to replace "one two three" with the 
+// string "three two one" and assign the result to the result 
+// variable. Make sure you are utilizing capture groups in the 
+// replacement string using the dollar sign ($) syntax.
+let str = "one two three";
+let fixRegex = /(\w+)\s(\w+)\s(\w+)/; // Change this line
+let replaceText = "$3 $2 $1"; // Change this line
+let result = str.replace(fixRegex, replaceText);
+console.log(result);
+
+// Regular Expressions: Remove Whitespace from Start and End
+// Write a regex and use the appropriate string methods to remove // whitespace at the beginning and end of strings.
+// Note: The String.prototype.trim() method would work here, but // you'll need to complete this challenge using regular 
+// expressions.
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s*|\s*$/g; // Change this line
+let result = hello.replace(wsRegex, ""); // Change this line
+let retStr = hello.match(wsRegex);
+console.log(result);
+console.log(hello.trim());
+console.log(retStr);
